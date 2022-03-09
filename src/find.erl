@@ -38,4 +38,4 @@ check_func([H1 | T1], [H2 | T2] ) ->
 	if H1 /= H2 -> check_func([H1 | T1], T2);
 	   H1 == H2 -> check_func(T1, T2)
 	end;
-check_func(_, _) -> false.
+check_func(_, []) -> false.
