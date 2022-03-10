@@ -5,10 +5,8 @@
 %% ====================================================================
 %% API functions
 %% ====================================================================
--export([print/1, factorial/1, reduce/1, len/1, duplicate/2, reverse/1, element/1, sum_odd/1, sum_even/1, find_max/1, find_min/1, max_recursive/1, min_recursive/1]).
-
-
-
+-export([print/1, factorial/1, reduce/1, len/1, duplicate/2, reverse/1, element/1, sum_odd/1, 
+		 sum_even/1, find_max/1, find_min/1, max_recursive/1, min_recursive/1, collatz/1, remove_dups/1]).
 %% ====================================================================
 %% Internal functions
 %% ====================================================================
@@ -115,11 +113,21 @@ min_recursive(List) ->
 min_recursive([], N) -> N;
 min_recursive([H|T], N) when H < N -> min_recursive(T, H);
 min_recursive([H|T], N) when H >= N -> min_recursive(T, N).
-
-
-
-
-
+%% 
+%%===================================================================
+collatz(1)->
+	[1];
+collatz(N) when N rem 2 == 0 -> 
+	[N|collatz(N div 2)];
+collatz(N) when N rem 2 /= 0 -> 
+	[N|collatz(3*N+1)].
+%%
+%%================================================================== 
+remove_dups([]) -> 
+	[];
+remove_dups(List) -> 
+	[H|T] = List,
+	[H | [X || X <- remove_dups(T), X /= H]].
 
 
 
